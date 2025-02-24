@@ -23,7 +23,6 @@ const checkTokenBlacklist = (req, res, next) => {
 
 router.use(checkTokenBlacklist);
 
-// Update validation schemas to use CNIC for login
 const loginSchema = Joi.object({
     email: Joi.string().required(),
     password: Joi.string().min(6).required(),
@@ -76,11 +75,11 @@ router.post("/login", async (req, res) => {
         });
     }
 
-    const user = await User.findOne({ cnic: value.cnic });
+    const user = await User.findOne({ email: value.email });
     if (!user) {
         return res.status(403).json({
             status: false,
-            message: "CNIC not registered",
+            message: "Email not registered",
         });
     }
 
