@@ -4,6 +4,8 @@ import 'dotenv/config'
 import mongoose from 'mongoose';
 import cors from 'cors';
 import authRoutes from "./router/authentication/auth.js";
+import carRoutes from "./router/cars.js";
+
 
 const app = express();
 app.use(
@@ -23,6 +25,7 @@ mongoose.connect(process.env.MONGODB_URI)
 
 
 app.use("/auth", authRoutes);
+app.use("/car", carRoutes)
 
 // app.get('/', (req, res) => {
 //     res.send('Hello World!');
