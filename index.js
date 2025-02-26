@@ -5,6 +5,8 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import authRoutes from "./router/authentication/auth.js";
 import carRoutes from "./router/cars.js";
+import bookcarRoutes from "./router/bookcar.js";
+import updateBookingRoutes from "./router/bookcar.js";
 
 
 const app = express();
@@ -26,6 +28,8 @@ mongoose.connect(process.env.MONGODB_URI)
 
 app.use("/auth", authRoutes);
 app.use("/car", carRoutes)
+app.use("/bookcar", bookcarRoutes)
+app.use("/updateBooking", updateBookingRoutes)
 
 // app.get('/', (req, res) => {
 //     res.send('Hello World!');

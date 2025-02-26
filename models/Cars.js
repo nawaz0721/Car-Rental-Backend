@@ -5,9 +5,11 @@ const CarSchema = new Schema(
   {
     name: { type: String, required: true, trim: true },
     price: { type: Number, required: true },
-    category: { type: String, enum: ["SUV", "Sedan", "Truck"], required: true },
+    city: {type: String, required: true },
+    category: { type: String, enum: ["SUV", "Sedan", "Sport", "Van", "Truck" ], required: true },
     description: { type: String, required: true },
-    image: { type: String }, // Image URL
+    image: { type: String }, 
+    status: { type: String, enum: ["available", "rented"], default: "available"}
   },
   { timestamps: true }
 );

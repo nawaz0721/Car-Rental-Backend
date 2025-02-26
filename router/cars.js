@@ -10,7 +10,7 @@ const upload = multer({ dest: "uploads/" });
 // Add Car
 router.post("/cars", upload.single("image"), async (req, res) => {
   try {
-    const { name, price, category, description } = req.body;
+    const { name, price, city, category, description , status } = req.body;
 
     // Upload image to Cloudinary
     let imageUrl = "";
@@ -22,7 +22,7 @@ router.post("/cars", upload.single("image"), async (req, res) => {
     }
 
     // Save car details in MongoDB
-    const newCar = new Car({ name, price, category, description, image: imageUrl });
+    const newCar = new Car({ name, price, city, category, description, status,  image: imageUrl });
     await newCar.save();
 
     res.status(201).json({ message: "Car added successfully", car: newCar });
@@ -35,7 +35,7 @@ router.post("/cars", upload.single("image"), async (req, res) => {
 // Update Car
 router.put("/cars/:id", upload.single("image"), async (req, res) => {
   try {
-    const { name, price, category, description } = req.body;
+    const { name, price, city, category, description, status } = req.body;
     const car = await Car.findById(req.params.id);
 
     if (!car) {
@@ -62,7 +62,7 @@ router.put("/cars/:id", upload.single("image"), async (req, res) => {
     // Update car details in MongoDB
     const updatedCar = await Car.findByIdAndUpdate(
       req.params.id,
-      { name, price, category, description, image: imageUrl },
+      { name, price, city, category, description, status, image: imageUrl },
       { new: true }
     );
 
