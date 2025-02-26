@@ -12,7 +12,7 @@ import updateBookingRoutes from "./router/bookcar.js";
 const app = express();
 app.use(
     cors({
-        origin: "http://localhost:5173",
+        origin: "https://car-rental-orpin-nine.vercel.app/",
         methods: ["GET", "POST", "PUT", "DELETE"],
         allowedHeaders: ["Content-Type", "Authorization"],
         credentials: true,
@@ -31,8 +31,8 @@ app.use("/car", carRoutes)
 app.use("/bookcar", bookcarRoutes)
 app.use("/updateBooking", updateBookingRoutes)
 
-// app.get('/', (req, res) => {
-//     res.send('Hello World!');
-// });
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
 
 app.listen(process.env.PORT , () => console.log('SERVER IS RUNNING'))
