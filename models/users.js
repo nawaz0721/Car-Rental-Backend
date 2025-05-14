@@ -7,7 +7,7 @@ const UserSchema = new Schema({
     password: { type: String, required: true, },
     phone: { type: String },
     role: { type: String, enum: ["user", "admin"], default: "user" },
-    status: { type: String, enum: ['pending', 'approved', 'denied'], default: 'pending' },
+    status: { type: String, enum: ['pending', 'approved', 'denied', "banned"], default: 'pending' },
 }, { timestamps: true })
 
 const User = mongoose.model("Users", UserSchema);
